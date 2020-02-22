@@ -92,7 +92,7 @@ public class StudentTest {
         Student student = new Student(firstName, lastName, examScores);
 
         // When
-        student.setExamScore(1, 150.0);
+        student.setExistingExamScore(1, 150.0);
         String output = student.getStringVersionOfExamScores();
 
         // Then
@@ -100,7 +100,7 @@ public class StudentTest {
     }
 
     @Test
-    public void getAverageExamScoreTest() {
+    public void getIndividualAverageExamScoreTest() {
         // : Given
         String firstName = "Leon";
         String lastName = "Hunter";

@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 public class Classroom {
     private Student[] students;
     private int maxNumberOfStudents;
-    private ArrayList<Double> classroomExamScores = new ArrayList<>();
 
     private static final Logger LOGGER = Logger.getLogger(Classroom.class.getName());
 
@@ -19,7 +18,7 @@ public class Classroom {
     }
 
     public Classroom(int maxStudents) {
-        this.maxNumberOfStudents = maxStudents;
+        students = new Student[maxStudents];
     }
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -34,19 +33,29 @@ public class Classroom {
 
     public double getAverageClassroomExamScore() {
         double sum = 0;
-        for (Double index : classroomExamScores) {
-            sum += index;
+        for (Student index : students) {
+            sum += index.getAverageExamScore();
         }
-
-        double average = sum / classroomExamScores.size();
+        double average = sum / students.length;
         return average;
     }
 
-    public void getClassroomExamScores() {
-
-        for (Student index : students) {
-            classroomExamScores.addAll(index.getExamScores());
+    public void addStudent(Student student) {
+        int i = 0;
+        Student[] newStudent = new Student[students.length + 1];
+        for (Student element : students) {
+            newStudent[i] = element;
+            i++;
         }
+        newStudent[newStudent.length - 1] = student;
+        students = newStudent;
     }
 
+    public void printNewStudent() {
+        String nameToPrint = "";
+        for (int i = 0; i < students.length; i++) {
+            nameToPrint += students[i];
+        }
+
+    }
 }

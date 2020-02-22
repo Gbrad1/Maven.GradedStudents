@@ -38,15 +38,11 @@ public class Student {
         return toReturn;
     }
 
-    public ArrayList<Double> getExamScores() {
-        return examScores;
+    public void addExamScore(double newExamScore) {
+        examScores.add(newExamScore);
     }
 
-    public void addExamScore(double examScore) {
-        examScores.add(examScore);
-    }
-
-    public void setExamScore(int examNumber, double newScore) {
+    public void setExistingExamScore(int examNumber, double newScore) {
         examScores.set(examNumber - 1, newScore);
     }
 
@@ -61,14 +57,16 @@ public class Student {
 
     @Override
     public String toString() {
-        String toReturn = "Average Scores: " + getAverageExamScore() + "\nExam Scores: ";
-        int count = 1;
-        for (Double element : examScores) {
-            String newString = String.format("%1.0f", element);
-            toReturn += "Exam " + count + " -> " + newString + "\n";
-        }
+        String toReturn = "Student Name: ";
+        toReturn += this.getFirstName() + " " + this.getLastName() + "\n";
+        toReturn += " Average Score: " + this.getAverageExamScore() + "\n";
+        toReturn += "Exam Scores: \n";
+        toReturn += this.getStringVersionOfExamScores();
+        LOGGER.info(toReturn);
         return toReturn;
     }
+
+
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
      *                                                     *
