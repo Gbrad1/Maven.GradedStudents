@@ -4,13 +4,14 @@ import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 public class Classroom {
+    private static final Logger LOGGER = Logger.getLogger(Classroom.class.getName());
     private Student[] students;
     private int maxNumberOfStudents;
-
-    private static final Logger LOGGER = Logger.getLogger(Classroom.class.getName());
+    private ArrayList<Student> temp;
 
     public Classroom(Student[] students) {
         this.students = students;
@@ -54,31 +55,20 @@ public class Classroom {
         students = newStudent;
     }
 
-    /*public void printNewStudent() {
-        String nameToPrint = "";
+    public void makeArrayToAList() {
+        temp = new ArrayList<>();
         for (int i = 0; i < students.length; i++) {
-            nameToPrint += students[i];
+            temp.add(students[i]);
         }
+    }
 
-    }*/
 
     public void removeStudent(String firstName, String lastName) {
-        int i = 0;
-        Student[] newStudentList = new Student[students.length];
-        for (Student e : students) {
-            if (e.getFirstName().equals(firstName)) {
-                if (e.getLastName().equals(lastName)) {
-                    i++;
-                    continue;
-                } else {
-                    newStudentList[i] = e;
-                    i++;
-                }
-            } else {
-                newStudentList[i] = e;
-                i++;
+        temp = new ArrayList<>();
+        for (int i = 0; i < students.length - 1; i++) {
+            if (students[i].getFirstName().equals(firstName) && students[i].getLastName().equals(lastName)) {
+
             }
         }
-        students = newStudentList;
     }
 }

@@ -1,6 +1,7 @@
 package io.zipcoder;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -71,6 +72,26 @@ public class ClassroomTest {
         Integer a = classroom.getStudents().length;
 
         LOGGER.info("\n" + a);
+    }
+
+    @Test
+    public void convertArrayToArrayListTest() {
+        Classroom classroom = new Classroom();
+        Double[] leonExamScores = { 100.0, 150.0, 250.0, 0.0 };
+        Double[] robertoExamScores = { 100.0, 125.0, 45.0, 138.0};
+        Double[] chrisExamScores = { 110.0, 125.0, 35.0, 138.0};
+        Student student = new Student("Leon", "Hunter", leonExamScores);
+        Student student2 = new Student("Roberto", "DeDeus", robertoExamScores);
+        Student student3 = new Student("Chris", "Nobles", chrisExamScores);
+
+        classroom.addStudent(student);
+        classroom.addStudent(student2);
+        classroom.addStudent(student3);
+
+        Integer actual = classroom.getStudents().length;
+        Integer expected = 3;
+
+        Assert.assertEquals(expected, actual);
     }
 
 }
