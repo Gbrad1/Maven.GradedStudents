@@ -66,8 +66,6 @@ public class Student {
         return toReturn;
     }
 
-
-
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
      *                                                     *
      *               getters and setters                   *

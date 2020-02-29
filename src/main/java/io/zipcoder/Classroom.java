@@ -1,5 +1,8 @@
 package io.zipcoder;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -51,11 +54,31 @@ public class Classroom {
         students = newStudent;
     }
 
-    public void printNewStudent() {
+    /*public void printNewStudent() {
         String nameToPrint = "";
         for (int i = 0; i < students.length; i++) {
             nameToPrint += students[i];
         }
 
+    }*/
+
+    public void removeStudent(String firstName, String lastName) {
+        int i = 0;
+        Student[] newStudentList = new Student[students.length];
+        for (Student e : students) {
+            if (e.getFirstName().equals(firstName)) {
+                if (e.getLastName().equals(lastName)) {
+                    i++;
+                    continue;
+                } else {
+                    newStudentList[i] = e;
+                    i++;
+                }
+            } else {
+                newStudentList[i] = e;
+                i++;
+            }
+        }
+        students = newStudentList;
     }
 }

@@ -51,4 +51,26 @@ public class ClassroomTest {
         LOGGER.info("\n" + postEnrollmentAsString);
     }
 
+    @Test
+    public void removeStudentTest() {
+        int maxNumberOfStudents = 5;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        Double[] leonExamScores = { 100.0, 150.0, 250.0, 0.0 };
+        Double[] robertoExamScores = { 100.0, 125.0, 45.0, 138.0};
+        Double[] chrisExamScores = { 110.0, 125.0, 35.0, 138.0};
+        Student student = new Student("Leon", "Hunter", leonExamScores);
+        Student student2 = new Student("Roberto", "DeDeus", robertoExamScores);
+        Student student3 = new Student("Chris", "Nobles", chrisExamScores);
+
+        classroom.addStudent(student);
+        classroom.addStudent(student2);
+        classroom.addStudent(student3);
+
+        classroom.removeStudent("Chris", "Nobles");
+
+        Integer a = classroom.getStudents().length;
+
+        LOGGER.info("\n" + a);
+    }
+
 }
