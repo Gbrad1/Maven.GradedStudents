@@ -1,9 +1,10 @@
 package io.zipcoder;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 import java.util.logging.Logger;
 
-public class Student {
+public class Student implements Comparable<Student>{
     String firstName;
     String lastName;
     ArrayList<Double> examScores;
@@ -92,4 +93,15 @@ public class Student {
         return examScores.size();
     }
 
+    public int compareTo(Student otherStudent) {
+        int difference = (int)otherStudent.getAverageExamScore() - (int)this.getAverageExamScore();
+        if (difference == 0) {
+            if (this.getLastName().equals(otherStudent.getLastName())) {
+                return this.getFirstName().compareTo(otherStudent.getFirstName());
+            }
+                return this.getLastName().compareTo(otherStudent.getLastName());
+            }   else {
+            return difference;
+        }
+    }
 }

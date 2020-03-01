@@ -3,25 +3,26 @@ package io.zipcoder;
 import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import org.w3c.dom.ls.LSOutput;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class Classroom {
     private static final Logger LOGGER = Logger.getLogger(Classroom.class.getName());
-    private Student[] students;
+    private ArrayList<Student> students;
     private int maxNumberOfStudents;
+    private TreeMap<String, ArrayList<Student>> gradeBook;
+    private ArrayList<Student> letterGrade;
 
-    public Classroom(Student[] students) {
+    public Classroom(ArrayList<Student> students) {
         this.students = students;
     }
 
     public Classroom() {
-        students = new Student[30];
+        students = new ArrayList<>();
     }
 
     public Classroom(int maxStudents) {
-        students = new Student[maxStudents];
+        students = new ArrayList<>(30);
     }
 
     /* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -30,7 +31,7 @@ public class Classroom {
      *                                                       *
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-    public Student[] getStudents() {
+    public ArrayList<Student> getStudents() {
         return students;
     }
 
@@ -39,31 +40,59 @@ public class Classroom {
         for (Student index : students) {
             sum += index.getAverageExamScore();
         }
-        double average = sum / students.length;
+        double average = sum / students.size();
         return average;
     }
 
     public void addStudent(Student student) {
-        for (int i = 0; i < students.length - 1; i++) {
-            if (students[i] == null) {
-                students[i] = student;
+        students.add(student);
+    }
+
+
+    public void removeStudent(String firstName, String lastName) {
+        for (Student element : students) {
+            if (element.getFirstName().equals(firstName) && element.getLastName().equals(lastName)) {
+                students.remove(element);
                 break;
             }
         }
     }
 
+    public void getStudentsByScore() {
+        Collections.sort(students);
 
-    public void removeStudent(String firstName, String lastName) {
-        Student toRemove;
-        ArrayList<Student> temp = new ArrayList<>();
-        for (int i = 0; i < students.length; i++) {
-            temp.add(students[i]);
-        }
+    }
 
-        for (int i = 0; i < temp.size(); i++) {
-            if (temp.get(i).getFirstName().equals(firstName) && temp.get(i).getLastName().equals(lastName)) {
-                toRemove = null;
+    public void determineLetterGrade() {
+        for (Student element : students) {
+            if (element.getAverageExamScore()) {
+
             }
         }
+    }
+
+    public TreeMap<String, ArrayList<Student>> getGradeBook() {
+        gradeBook = new TreeMap<>();
+        letterGrade = new ArrayList<>();
+        for (Student element : students) {
+            if (element.getAverageExamScore() >= 90) {
+                letterGrade.add(element);
+                gradeBook.put("A", letterGrade);
+            } else if (element.getAverageExamScore() < 89 && element.getAverageExamScore() >= 71) {
+                gradeBook.put("B", letterGrade);
+            } else if (element.getAverageExamScore() < 70 && element.getAverageExamScore() >= 50) {
+                gradeBook.put("C", letterGrade);
+            } else if (element.getAverageExamScore() < 49 && element.getAverageExamScore() > 11) {
+                gradeBook.put("D", letterGrade);
+            } else {
+                gradeBook.put("F", letterGrade);
+            }
+        }
+        return gradeBook;
+    }
+
+
+    public void printGradeBook() {
+        System.out.println("hey");
     }
 }
