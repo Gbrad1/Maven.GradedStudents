@@ -11,7 +11,6 @@ public class Classroom {
     private static final Logger LOGGER = Logger.getLogger(Classroom.class.getName());
     private Student[] students;
     private int maxNumberOfStudents;
-    private ArrayList<Student> temp;
 
     public Classroom(Student[] students) {
         this.students = students;
@@ -45,29 +44,25 @@ public class Classroom {
     }
 
     public void addStudent(Student student) {
-        int i = 0;
-        Student[] newStudent = new Student[students.length + 1];
-        for (Student element : students) {
-            newStudent[i] = element;
-            i++;
-        }
-        newStudent[newStudent.length - 1] = student;
-        students = newStudent;
-    }
-
-    public void makeArrayToAList() {
-        temp = new ArrayList<>();
-        for (int i = 0; i < students.length; i++) {
-            temp.add(students[i]);
+        for (int i = 0; i < students.length - 1; i++) {
+            if (students[i] == null) {
+                students[i] = student;
+                break;
+            }
         }
     }
 
 
     public void removeStudent(String firstName, String lastName) {
-        temp = new ArrayList<>();
-        for (int i = 0; i < students.length - 1; i++) {
-            if (students[i].getFirstName().equals(firstName) && students[i].getLastName().equals(lastName)) {
+        Student toRemove;
+        ArrayList<Student> temp = new ArrayList<>();
+        for (int i = 0; i < students.length; i++) {
+            temp.add(students[i]);
+        }
 
+        for (int i = 0; i < temp.size(); i++) {
+            if (temp.get(i).getFirstName().equals(firstName) && temp.get(i).getLastName().equals(lastName)) {
+                toRemove = null;
             }
         }
     }

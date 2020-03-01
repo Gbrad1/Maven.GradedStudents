@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
@@ -48,13 +49,18 @@ public class ClassroomTest {
         String preEnrollmentAsString = Arrays.toString(preEnrollment);
         String postEnrollmentAsString = Arrays.toString(postEnrollment);
 
+        Integer actual = classroom.getStudents().length;
+        Integer expected = 1;
+
         LOGGER.info("\n" + preEnrollmentAsString);
         LOGGER.info("\n" + postEnrollmentAsString);
+
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void removeStudentTest() {
-        int maxNumberOfStudents = 5;
+        int maxNumberOfStudents = 3;
         Classroom classroom = new Classroom(maxNumberOfStudents);
         Double[] leonExamScores = { 100.0, 150.0, 250.0, 0.0 };
         Double[] robertoExamScores = { 100.0, 125.0, 45.0, 138.0};
@@ -69,29 +75,14 @@ public class ClassroomTest {
 
         classroom.removeStudent("Chris", "Nobles");
 
-        Integer a = classroom.getStudents().length;
-
-        LOGGER.info("\n" + a);
-    }
-
-    @Test
-    public void convertArrayToArrayListTest() {
-        Classroom classroom = new Classroom();
-        Double[] leonExamScores = { 100.0, 150.0, 250.0, 0.0 };
-        Double[] robertoExamScores = { 100.0, 125.0, 45.0, 138.0};
-        Double[] chrisExamScores = { 110.0, 125.0, 35.0, 138.0};
-        Student student = new Student("Leon", "Hunter", leonExamScores);
-        Student student2 = new Student("Roberto", "DeDeus", robertoExamScores);
-        Student student3 = new Student("Chris", "Nobles", chrisExamScores);
-
-        classroom.addStudent(student);
-        classroom.addStudent(student2);
-        classroom.addStudent(student3);
-
         Integer actual = classroom.getStudents().length;
         Integer expected = 3;
 
+        LOGGER.info("\n" + actual);
+
         Assert.assertEquals(expected, actual);
     }
+
+
 
 }
