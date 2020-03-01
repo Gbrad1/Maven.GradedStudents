@@ -111,7 +111,7 @@ public class ClassroomTest {
 
     @Test
     public void CheckCTest() {
-        letterGradeB = new ArrayList<>();
+        letterGradeC = new ArrayList<>();
         classroom.addStudent(student4);
         Integer actualClassroomSize = classroom.getStudents().size();
         Integer expectedClassroomSize = 4;
@@ -119,13 +119,13 @@ public class ClassroomTest {
         Integer actualSize = classroom.getLetterGradeC().size();
         Integer expectedSize = 0;
         LOGGER.info("\n" + actualSize);
-        //Assert.assertEquals(expectedClassroomSize, actualClassroomSize);
+        Assert.assertEquals(expectedClassroomSize, actualClassroomSize);
         Assert.assertEquals(expectedSize, actualSize);
     }
 
     @Test
     public void CheckDTest() {
-        letterGradeB = new ArrayList<>();
+        letterGradeD = new ArrayList<>();
         classroom.addStudent(student4);
         Integer actualClassroomSize = classroom.getStudents().size();
         Integer expectedClassroomSize = 4;
@@ -133,13 +133,13 @@ public class ClassroomTest {
         Integer actualSize = classroom.getLetterGradeD().size();
         Integer expectedSize = 1;
         LOGGER.info("\n" + actualSize);
-        //Assert.assertEquals(expectedClassroomSize, actualClassroomSize);
+        Assert.assertEquals(expectedClassroomSize, actualClassroomSize);
         Assert.assertEquals(expectedSize, actualSize);
     }
 
     @Test
     public void CheckFTest() {
-        letterGradeB = new ArrayList<>();
+        letterGradeF = new ArrayList<>();
         classroom.addStudent(student4);
         Integer actualClassroomSize = classroom.getStudents().size();
         Integer expectedClassroomSize = 4;
@@ -147,7 +147,7 @@ public class ClassroomTest {
         Integer actualSize = classroom.getLetterGradeF().size();
         Integer expectedSize = 0;
         LOGGER.info("\n" + actualSize);
-        //Assert.assertEquals(expectedClassroomSize, actualClassroomSize);
+        Assert.assertEquals(expectedClassroomSize, actualClassroomSize);
         Assert.assertEquals(expectedSize, actualSize);
     }
 
@@ -163,5 +163,10 @@ public class ClassroomTest {
         for (Map.Entry<String, ArrayList<Student>> element : classroom.getGradeBook().entrySet()) {
             System.out.println("Grade: " + element.getKey() + " Student(s): " + element.getValue());
         }
+        classroom.getGradeBook().entrySet();
+
+        Integer expectedNumberOfAStudents = 2;
+        Integer actualNumberOfAStudents = classroom.getLetterGradeA().size();
+        Assert.assertEquals(expectedNumberOfAStudents, actualNumberOfAStudents);
     }
 }

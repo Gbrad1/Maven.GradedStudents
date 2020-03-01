@@ -58,12 +58,11 @@ public class Student implements Comparable<Student>{
 
     @Override
     public String toString() {
-        String toReturn = "Student Name: ";
+        String toReturn = "\nStudent Name: ";
         toReturn += this.getFirstName() + " " + this.getLastName() + "\n";
-        toReturn += " Average Score: " + this.getAverageExamScore() + "\n";
+        toReturn += "Average Score: " + this.getAverageExamScore() + "\n";
         toReturn += "Exam Scores: \n";
         toReturn += this.getStringVersionOfExamScores();
-        LOGGER.info(toReturn);
         return toReturn;
     }
 

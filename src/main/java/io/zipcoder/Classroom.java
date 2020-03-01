@@ -149,7 +149,4 @@ public class Classroom {
         return letterGradeF;
     }
 
-    public void printGradeBook() {
-        System.out.println("hey");
-    }
 }
