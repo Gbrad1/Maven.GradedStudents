@@ -119,6 +119,7 @@ public class Classroom {
     }
 
     public TreeMap<String, ArrayList<Student>> getGradeBook() {
+        gradeBook = new TreeMap<>();
         gradeBook.put("A", letterGradeA);
         gradeBook.put("B", letterGradeB);
         gradeBook.put("C", letterGradeC);
@@ -126,6 +127,26 @@ public class Classroom {
         gradeBook.put("F", letterGradeF);
 
         return gradeBook;
+    }
+
+    public ArrayList<Student> getLetterGradeA () {
+        return letterGradeA;
+    }
+
+    public ArrayList<Student> getLetterGradeB () {
+        return letterGradeB;
+    }
+
+    public ArrayList<Student> getLetterGradeC () {
+        return letterGradeC;
+    }
+
+    public ArrayList<Student> getLetterGradeD () {
+        return letterGradeD;
+    }
+
+    public ArrayList<Student> getLetterGradeF () {
+        return letterGradeF;
     }
 
     public void printGradeBook() {
