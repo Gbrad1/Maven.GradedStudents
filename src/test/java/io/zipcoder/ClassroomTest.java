@@ -12,38 +12,38 @@ public class ClassroomTest {
 
     private static final Logger LOGGER = Logger.getLogger(ClassroomTest.class.getName());
     Classroom classroom;
-    Student s1;
-    Student s2;
     Student student;
     Student student2;
     Student student3;
     Student student4;
+    ArrayList<Student> letterGradeA;
+    ArrayList<Student> letterGradeB;
+    ArrayList<Student> letterGradeC;
+    ArrayList<Student> letterGradeD;
+    ArrayList<Student> letterGradeF;
 
     @Before
     public void setupBeforeEachTest() {
-        Double[] leonExamScores = { 100.0, 150.0, 250.0, 0.0 };
-        Double[] robertoExamScores = { 1.0, 13.0, 79.0, 32.0 };
-        Double[] chrisExamScores = { 110.0, 125.0, 35.0, 138.0 };
-        Double[] sianExamScores = { 300.0, 120.0, 45.0, 120.0 };
+        Double[] leonExamScores = { 100.0, 150.0, 250.0, 0.0 }; //125.0 average
+        Double[] robertoExamScores = { 1.0, 13.0, 79.0, 32.0 }; //31.25 average
+        Double[] chrisExamScores = { 110.0, 125.0, 35.0, 60.0 }; //82.50 average
+        Double[] sianExamScores = { 300.0, 120.0, 45.0, 120.0 }; //146.25 average
 
         student = new Student("Leon", "Hunter", leonExamScores);
         student2 = new Student("Roberto", "DeDeus", robertoExamScores);
         student3 = new Student("Chris", "Nobles", chrisExamScores);
         student4 = new Student("Sian", "Carter", sianExamScores);
 
-        ArrayList<Student> listOfStudents = new ArrayList<Student>();
-        listOfStudents.add(student);
-        listOfStudents.add(student2);
-        listOfStudents.add(student3);
-
-        classroom = new Classroom(listOfStudents);
-
+        classroom = new Classroom();
+        classroom.addStudent(student);
+        classroom.addStudent(student2);
+        classroom.addStudent(student3);
     }
 
     @Test
     public void getClassRoomAverageExamScore() {
         Double actual = classroom.getAverageClassroomExamScore();
-        Double expected = 109.66666666666667;
+        Double expected = 86.0;
         Assert.assertEquals(expected, actual);
     }
 
@@ -71,7 +71,7 @@ public class ClassroomTest {
     }
 
     @Test
-    public void getStudentsByScore() {
+    public void getStudentsByScoreTest() {
         classroom.addStudent(student4);
         classroom.getStudentsByScore();
         LOGGER.info("\n" + classroom.getStudents());
@@ -81,10 +81,30 @@ public class ClassroomTest {
     }
 
     @Test
-    public void gradeBookTest() {
-        classroom.getGradeBook();
-        classroom.getGradeBook().entrySet();
-        LOGGER.info("\n" + classroom.getGradeBook().entrySet());
+    public void checkATest() {
+        letterGradeA = new ArrayList<>();
+        classroom.addStudent(student4);
+        Integer actualClassroomSize = classroom.getStudents().size();
+        Integer expectedClassroomSize = 4;
+        classroom.checkIfStudentIsA();
+        Integer actualSize = letterGradeA.size();
+        Integer expectedSize = 2;
+        LOGGER.info("\n" + actualSize);
+        //Assert.assertEquals(expectedClassroomSize, actualClassroomSize);
+        Assert.assertEquals(expectedSize, actualSize);
     }
 
+    @Test
+    public void CheckBTest() {
+        letterGradeB = new ArrayList<>();
+        classroom.addStudent(student4);
+        Integer actualClassroomSize = classroom.getStudents().size();
+        Integer expectedClassroomSize = 4;
+        classroom.checkIfStudentIsB();
+        Integer actualSize = letterGradeB.size();
+        Integer expectedSize = 1;
+        LOGGER.info("\n" + actualSize);
+        //Assert.assertEquals(expectedClassroomSize, actualClassroomSize);
+        Assert.assertEquals(expectedSize, actualSize);
+    }
 }

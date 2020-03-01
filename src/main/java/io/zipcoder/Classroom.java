@@ -11,7 +11,12 @@ public class Classroom {
     private ArrayList<Student> students;
     private int maxNumberOfStudents;
     private TreeMap<String, ArrayList<Student>> gradeBook;
-    private ArrayList<Student> letterGrade;
+    private ArrayList<Student> letterGradeA;
+    private ArrayList<Student> letterGradeB;
+    private ArrayList<Student> letterGradeC;
+    private ArrayList<Student> letterGradeD;
+    private ArrayList<Student> letterGradeF;
+
 
     public Classroom(ArrayList<Student> students) {
         this.students = students;
@@ -60,37 +65,68 @@ public class Classroom {
 
     public void getStudentsByScore() {
         Collections.sort(students);
-
     }
 
-    public void determineLetterGrade() {
-        for (Student element : students) {
-            if (element.getAverageExamScore()) {
 
+    public ArrayList<Student> checkIfStudentIsA() {
+        letterGradeA = new ArrayList<>();
+        for (Student element : students) {
+            if (element.getAverageExamScore() >= 90) {
+                letterGradeA.add(element);
             }
         }
+        return letterGradeA;
+    }
+
+    public ArrayList<Student> checkIfStudentIsB() {
+        letterGradeB = new ArrayList<>();
+        for (Student element : students) {
+            if (element.getAverageExamScore() < 89 && element.getAverageExamScore() >= 71) {
+                letterGradeB.add(element);
+            }
+        }
+        return letterGradeB;
+    }
+
+    public ArrayList<Student> checkIfStudentIsC() {
+        letterGradeC = new ArrayList<>();
+        for (Student element : students) {
+            if (element.getAverageExamScore() < 70 && element.getAverageExamScore() >= 50) {
+                letterGradeC.add(element);
+            }
+        }
+        return letterGradeC;
+    }
+
+    public ArrayList<Student> checkIfStudentIsD() {
+        letterGradeD = new ArrayList<>();
+        for (Student element : students) {
+            if (element.getAverageExamScore() < 49 && element.getAverageExamScore() >= 11) {
+                letterGradeD.add(element);
+            }
+        }
+        return letterGradeD;
+    }
+
+    public ArrayList<Student> checkIfStudentIsF() {
+        letterGradeF = new ArrayList<>();
+        for (Student element : students) {
+            if (element.getAverageExamScore() < 11) {
+                letterGradeF.add(element);
+            }
+        }
+        return letterGradeF;
     }
 
     public TreeMap<String, ArrayList<Student>> getGradeBook() {
-        gradeBook = new TreeMap<>();
-        letterGrade = new ArrayList<>();
-        for (Student element : students) {
-            if (element.getAverageExamScore() >= 90) {
-                letterGrade.add(element);
-                gradeBook.put("A", letterGrade);
-            } else if (element.getAverageExamScore() < 89 && element.getAverageExamScore() >= 71) {
-                gradeBook.put("B", letterGrade);
-            } else if (element.getAverageExamScore() < 70 && element.getAverageExamScore() >= 50) {
-                gradeBook.put("C", letterGrade);
-            } else if (element.getAverageExamScore() < 49 && element.getAverageExamScore() > 11) {
-                gradeBook.put("D", letterGrade);
-            } else {
-                gradeBook.put("F", letterGrade);
-            }
-        }
+        gradeBook.put("A", letterGradeA);
+        gradeBook.put("B", letterGradeB);
+        gradeBook.put("C", letterGradeC);
+        gradeBook.put("D", letterGradeD);
+        gradeBook.put("F", letterGradeF);
+
         return gradeBook;
     }
-
 
     public void printGradeBook() {
         System.out.println("hey");
